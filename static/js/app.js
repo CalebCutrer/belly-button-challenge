@@ -127,12 +127,12 @@ function init() {
 
 
 // Function for event listener
-function optionChanged(newSample) {
+function optionChanged(array) {
   // Build charts and metadata panel each time a new sample is selected
   buildMetadata(array);
   buildCharts(array);
 
-};
+}
 
 // Initialize the dashboard
 init();
