@@ -4,9 +4,11 @@ function buildMetadata(sample) {
 
     // get the metadata field
     let metadata = data.metadata;
+    console.log(metadata);
 
     // Filter the metadata for the object with the desired sample number
-    let filtered_metadata = metadata.find(item => item.id === parseInt(sample));
+    let array = metadata.filter(sample_object => sample_object.id == sample);
+    let result = array[0];
 
     // Use d3 to select the panel with id of `#sample-metadata`
     let panel = d3.select("#sample-metadata");
@@ -16,13 +18,12 @@ function buildMetadata(sample) {
 
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.\
-    Object.entries(filteredMetadata).forEach(([key, value]) => {
-      panel.append("p").text(`${key}: ${value}`);
-    });
-  }).catch((error) => {
-    console.log("Error loading JSON file:", error);
-  });
+    for (id in result) {
+      panel.append("h6").text(`${id}: ${result[id]}`);
+  };
+});
 }
+
 
 // function to build both charts
 function buildCharts(sample) {
